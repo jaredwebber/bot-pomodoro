@@ -5,9 +5,9 @@ const fs = require('fs');
 
 //File Name Holding Output Strings
 var options;
-const EMOJIS = ["😀", "😊", "🙂", "😄", "😅", "😃", "😄", "😁", "👍", "💪"];
 
 //Emoji Constants
+const EMOJIS = ["😀", "😊", "🙂", "😄", "😅", "😃", "😄", "😁", "👍", "💪"];
 
 //Returns random emoji from constant array EMOJIS
 function getDifferenciator(){

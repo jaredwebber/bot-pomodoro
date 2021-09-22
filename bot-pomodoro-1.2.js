@@ -1,18 +1,16 @@
 'use strict'
 
+//Manage environment variables
 require('dotenv').config();
-var axios = require('axios');
-var date = new Date();
-
 //Access Twit api for tweet posting
 const Twit = require('twit');
 //Access tweetable phrases from output-gen file
 const output = require("./output-gen-1.1.js");
 
 //Session Time Lengths (minutes)
-const WORK_TIME = 25;
-const LONG_BREAK_TIME = 30;
-const SHORT_BREAK_TIME = 5;
+const WORK_TIME = 1;
+const LONG_BREAK_TIME = 1;
+const SHORT_BREAK_TIME = 1;
 
 //Create new twit using env variables
 var T = new Twit({
