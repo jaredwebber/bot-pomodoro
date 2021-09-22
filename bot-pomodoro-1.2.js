@@ -32,7 +32,7 @@ function sleep(minutes) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-//Update the legible time string using Date
+//Update the legible time string using Date - TO BE REMOVED
 function updateTime(){
 	date = new Date();
 	time = date.getMonth()+"/"+date.getDate()+", "+date.getHours()+":"+("0"+date.getMinutes()).slice(-2);
@@ -46,7 +46,7 @@ beginSchedule();
 async function beginSchedule(){
 	//First 'Get to work' tweet
 	updateTime();
-	msg = output.getWorkMsg() + "\n{" + time +"}";
+	msg = output.getWorkMsg();// + "\n{" + time +"}";
 	sendTweet();
 
 	//Enter infinite loop
@@ -56,23 +56,23 @@ async function beginSchedule(){
 		for(var i = 0; i< 3; i++){
 			await sleep(25);
 			updateTime();
-			msg = output.getShortBreakMsg()  + "\n{" + time +"}";
+			msg = output.getShortBreakMsg();//  + "\n{" + time +"}";
 			sendTweet();
 			
 			await sleep(5);
 			updateTime();
-			msg = output.getWorkMsg() + "\n{" + time +"}";
+			msg = output.getWorkMsg();// + "\n{" + time +"}";
 			sendTweet();
 		}
 
 		await sleep(25);
 		updateTime();
-		msg = output.getLongBreakMsg() + "\n{" + time +"}";
+		msg = output.getLongBreakMsg();// + "\n{" + time +"}";
 		sendTweet();
 
 		await sleep(30);
 		updateTime();
-		msg = output.getWorkMsg() + "\n{" + time +"}";
+		msg = output.getWorkMsg();// + "\n{" + time +"}";
 		sendTweet();
 	}
 }
