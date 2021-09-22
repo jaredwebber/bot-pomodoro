@@ -1,1 +1,1 @@
-worker: node botpomodoro.js
+worker: node bot-pomodoro-1.1.js
