@@ -5,19 +5,19 @@ const fs = require('fs');
 
 //File Name Holding Output Strings
 var options;
-var emojiOptions = ["😀", "😊", "🙂", "😄", "😅", "😃", "😄", "😁", "👍", "💪"];
+const EMOJIS = ["😀", "😊", "🙂", "😄", "😅", "😃", "😄", "😁", "👍", "💪"];
 
 //Emoji Constants
 
-//Returns emoji based on passed value
-function getDifferenciator(duplicate){
-	var len = emojiOptions.length;
+//Returns random emoji from constant array EMOJIS
+function getDifferenciator(){
+	var len = EMOJIS.length;
 	var random = Math.floor(Math.random() * len);
-	return emojiOptions[random];
+	return EMOJIS[random];
 }
 
 //Returns string from backToWork json obj
-function getWorkMsg(duplicate){
+function getWorkMsg(){
 	options = require('./OutputOptions.json');
 	var len = Object.keys(options).length;
 	var random = Math.floor(Math.random()*len);
@@ -25,7 +25,7 @@ function getWorkMsg(duplicate){
 }
 
 //Returns string from shortBreak json obj
-function getShortBreakMsg(duplicate){
+function getShortBreakMsg(){
 	options = require('./OutputOptions.json');
 	var len = Object.keys(options).length;
 	var random = Math.floor(Math.random()*len);
@@ -33,7 +33,7 @@ function getShortBreakMsg(duplicate){
 }
 
 //Returns string from longBreak json obj
-function getLongBreakMsg(duplicate){
+function getLongBreakMsg(){
 	options = require('./OutputOptions.json');
 	var len = Object.keys(options).length;
 	var random = Math.floor(Math.random()*len);

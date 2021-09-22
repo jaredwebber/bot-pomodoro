@@ -22,8 +22,6 @@ var T = new Twit({
 	access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
 
-var date; //Date obj used to check current time
-var time; //Stores current time in legible string
 var msg; //Message to be tweeted
 
 //Send tweet to account, using message var contents
@@ -36,9 +34,6 @@ function sleep(minutes) {
 	var ms = minutes*60*1000;//minutes * 60 sec/min * 1000 ms/sec
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-//Run the Program
-beginSchedule();
 
 //Handles running of program:
 //Updates the tweet contents, sends tweets, and waits appropriate times between actions
@@ -70,3 +65,7 @@ async function beginSchedule(){
 		sendTweet();
 	}
 }
+
+//Run the Program
+beginSchedule();
+
