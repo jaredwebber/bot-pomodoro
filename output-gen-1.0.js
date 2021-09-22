@@ -2,44 +2,32 @@
 
 const fs = require('fs');
 
-//Temporary strings
-const BACK_TO_WORK = "Time to work hard for 25 minutes!";
-const SHORT_BREAK = "Take a 5 minute break!";
-const LONG_BREAK = "Long break! Take 30 minutes off!";
+//File Name Holding Output Strings
+var options;
 
-//File Names Holding Output Strings
-const OPTIONS = require('./OutputOptions.json');
-
-//Returns string from WorkOutput.json
+//Returns string from backToWork json obj
 function getWorkMsg(){
-	try{
-		const string = fs.readFileSync(OPTIONS);
-		console.log(string);
-
-		const read = JSON.parse(string);
-		console.log(read);
-	}catch{
-		return;
-	}
-	
-	//var array = JSON.parse(WORK_OUTPUT);
-	//var random = Math.random()*array.length;
-	//return array[random];
-
+	options = require('./OutputOptions.json');
+	var len = Object.keys(options).length;
+	var random = Math.floor(Math.random()*len);
+	return options.backToWork[random];
 }
 
-//Returns string from ShortBreakOutput.json
+//Returns string from shortBreak json obj
 function getShortBreakMsg(){
-	return SHORT_BREAK;
+	options = require('./OutputOptions.json');
+	var len = Object.keys(options).length;
+	var random = Math.floor(Math.random()*len);
+	return options.shortBreak[random];
 }
 
-//Returns string from LongBreakOutput.json
+//Returns string from longBreak json obj
 function getLongBreakMsg(){
-	return LONG_BREAK;
+	options = require('./OutputOptions.json');
+	var len = Object.keys(options).length;
+	var random = Math.floor(Math.random()*len);
+	return options.longBreak[random];
 }
-
-getWorkMsg()
-//console.log(getWorkMsg());
 
 //Make needed functions available
 module.exports = {getLongBreakMsg, getShortBreakMsg, getWorkMsg};
