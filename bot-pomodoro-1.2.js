@@ -36,7 +36,6 @@ function sleep(minutes) {
 //Handles running of program:
 //Updates the tweet contents, sends tweets, and waits appropriate times between actions
 async function beginSchedule(){
-	console.log("starting");
 	//First 'Get to work' tweet
 	msg = output.getWorkMsg();
 	sendTweet();
