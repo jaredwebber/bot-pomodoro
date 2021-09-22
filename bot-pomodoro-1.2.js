@@ -9,6 +9,11 @@ const Twit = require('twit');
 //Access tweetable phrases from output-gen file
 const output = require("./output-gen-1.1.js");
 
+//Session Time Lengths (minutes)
+const WORK_TIME = 25;
+const LONG_BREAK_TIME = 30;
+const SHORT_BREAK_TIME = 5;
+
 //Create new twit using env variables
 var T = new Twit({
 	consumer_key: process.env.API_KEY, 
@@ -32,12 +37,6 @@ function sleep(minutes) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-//Update the legible time string using Date - TO BE REMOVED
-function updateTime(){
-	date = new Date();
-	time = date.getMonth()+"/"+date.getDate()+", "+date.getHours()+":"+("0"+date.getMinutes()).slice(-2);
-}
-
 //Run the Program
 beginSchedule();
 
@@ -45,8 +44,7 @@ beginSchedule();
 //Updates the tweet contents, sends tweets, and waits appropriate times between actions
 async function beginSchedule(){
 	//First 'Get to work' tweet
-	updateTime();
-	msg = output.getWorkMsg();// + "\n{" + time +"}";
+	msg = output.getWorkMsg();
 	sendTweet();
 
 	//Enter infinite loop
@@ -54,25 +52,21 @@ async function beginSchedule(){
 
 		//loop 3 times break -> work
 		for(var i = 0; i< 3; i++){
-			await sleep(25);
-			updateTime();
-			msg = output.getShortBreakMsg();//  + "\n{" + time +"}";
+			await sleep(WORK_TIME);
+			msg = output.getShortBreakMsg();
 			sendTweet();
 			
-			await sleep(5);
-			updateTime();
-			msg = output.getWorkMsg();// + "\n{" + time +"}";
+			await sleep(SHORT_BREAK_TIME);
+			msg = output.getWorkMsg();
 			sendTweet();
 		}
 
-		await sleep(25);
-		updateTime();
-		msg = output.getLongBreakMsg();// + "\n{" + time +"}";
+		await sleep(WORK_TIME);
+		msg = output.getLongBreakMsg();
 		sendTweet();
 
-		await sleep(30);
-		updateTime();
-		msg = output.getWorkMsg();// + "\n{" + time +"}";
+		await sleep(LONG_BREAK_TIME);
+		msg = output.getWorkMsg();
 		sendTweet();
 	}
 }
