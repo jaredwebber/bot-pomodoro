@@ -1,0 +1,20 @@
+{
+	"longBreak": [
+		"Time for a long break! (30 minutes)",
+		"Finally! 30 minute break!",
+		"Take 30 minutes to stand up and walk around."
+	],
+
+	"shortBreak": [
+		"Time for a short break! (5 minutes)",
+		"Quick Rest! 5 minute break!",
+		"Take 5 minutes to rest and some water."
+	],
+
+	"backToWork": [
+		"Time to get back to work! (25 minutes)",
+		"Another 25 minutes of work awaits!",
+		"Get back to work! 25 minutes will be over in no time!"		
+	]
+	
+}
