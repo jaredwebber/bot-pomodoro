@@ -2,19 +2,34 @@
 	"longBreak": [
 		"Time for a long break! (30 minutes)",
 		"Finally! 30 minute break!",
-		"Take 30 minutes to stand up and walk around."
+		"Take 30 minutes to stand up and walk around.",
+		"30 minute break... and then back to work!",
+		"Take a break you deserve it! 30 minutes to relax!",
+		"Enjoy 30 minutes to yourself to give yourself a break.",
+		"About time! 30 minute break!", 
+		"You've been working hard, go get a snack. Work will resume in 30 minutes."
 	],
 
 	"shortBreak": [
 		"Time for a short break! (5 minutes)",
 		"Quick Rest! 5 minute break!",
-		"Take 5 minutes to rest and some water."
+		"Take 5 minutes to rest and some water.",
+		"5 minute break... and then back to work!", 
+		"Take a 5 minute breather.", 
+		"5 minute break... now you can check your phone.", 
+		"Take 5 minutes to refresh and take a break.", 
+		"Short break! 5 minutes and then back to work!"
 	],
 
 	"backToWork": [
 		"Time to get back to work! (25 minutes)",
 		"Another 25 minutes of work awaits!",
-		"Get back to work! 25 minutes will be over in no time!"		
+		"Get back to work! 25 minutes will be over in no time!",		
+		"25 minutes of hard work!",
+		"Alright, time to focus hard for another 25 minutes!", 
+		"Time for 25 minutes of focus!", 
+		"Work time! 25 minutes of work never hurt anyone..right?",
+		"Time to work hard for 25 minutes!"
 	]
 	
 }

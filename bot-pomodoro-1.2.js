@@ -7,7 +7,7 @@ var date = new Date();
 //Access Twit api for tweet posting
 const Twit = require('twit');
 //Access tweetable phrases from output-gen file
-const output = require("./output-gen-1.0.js");
+const output = require("./output-gen-1.1.js");
 
 //Create new twit using env variables
 var T = new Twit({
@@ -51,35 +51,19 @@ async function beginSchedule(){
 
 	//Enter infinite loop
 	while(true){
-		await sleep(25);
-		updateTime();
-		msg = output.getShortBreakMsg()  + "\n{" + time +"}";
-		sendTweet();
-		
-		await sleep(5);
-		updateTime();
-		msg = output.getWorkMsg() + "\n{" + time +"}";
-		sendTweet();
 
-		await sleep(25);
-		updateTime();
-		msg = output.getShortBreakMsg()  + "\n{" + time +"}";
-		sendTweet();
-
-		await sleep(5);
-		updateTime();
-		msg = output.getWorkMsg() + "\n{" + time +"}";
-		sendTweet();
-
-		await sleep(25);
-		updateTime();
-		msg = output.getShortBreakMsg() + "\n{" + time +"}";
-		sendTweet();
-
-		await sleep(5);
-		updateTime();
-		msg = output.getWorkMsg() + "\n{" + time +"}";
-		sendTweet();
+		//loop 3 times break -> work
+		for(var i = 0; i< 3; i++){
+			await sleep(25);
+			updateTime();
+			msg = output.getShortBreakMsg()  + "\n{" + time +"}";
+			sendTweet();
+			
+			await sleep(5);
+			updateTime();
+			msg = output.getWorkMsg() + "\n{" + time +"}";
+			sendTweet();
+		}
 
 		await sleep(25);
 		updateTime();
