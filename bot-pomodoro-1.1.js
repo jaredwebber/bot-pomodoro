@@ -3,6 +3,7 @@ var axios = require('axios');
 var date = new Date();
 var time = date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
 const Twit = require('twit');
+const output = require("./output-gen-1.0.js");
 
 var T = new Twit({
 	consumer_key: process.env.API_KEY, 
@@ -10,10 +11,6 @@ var T = new Twit({
 	access_token: process.env.ACCESS_TOKEN, 
 	access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
-
-const BACK_TO_WORK = "Time to work hard for 25 minutes!";
-const SHORT_BREAK = "Take a 5 minute break!";
-const LONG_BREAK = "Long break! Take 30 minutes off!";
 
 var msg; 
 
@@ -36,48 +33,48 @@ beginSchedule();
 
 async function beginSchedule(){
 	updateTime();
-	msg = BACK_TO_WORK + "\n{" + time +"}";
+	msg = output.getWorkMsg() + "\n{" + time +"}";
 	sendTweet();
 
 	while(true){
 		await sleep(25);
 		updateTime();
-		msg = SHORT_BREAK + "\n{" + time +"}";
+		msg = output.getShortBreakMsg()  + "\n{" + time +"}";
 		sendTweet();
 		
 		await sleep(5);
 		updateTime();
-		msg = BACK_TO_WORK + "\n{" + time +"}";
+		msg = output.getWorkMsg() + "\n{" + time +"}";
 		sendTweet();
 
 		await sleep(25);
 		updateTime();
-		msg = SHORT_BREAK + "\n{" + time +"}";
+		msg = output.getShortBreakMsg()  + "\n{" + time +"}";
 		sendTweet();
 
 		await sleep(5);
 		updateTime();
-		msg = BACK_TO_WORK + "\n{" + time +"}";
+		msg = output.getWorkMsg() + "\n{" + time +"}";
 		sendTweet();
 
 		await sleep(25);
 		updateTime();
-		msg = SHORT_BREAK + "\n{" + time +"}";
+		msg = output.getShortBreakMsg() + "\n{" + time +"}";
 		sendTweet();
 
 		await sleep(5);
 		updateTime();
-		msg = BACK_TO_WORK + "\n{" + time +"}";
+		msg = output.getWorkMsg() + "\n{" + time +"}";
 		sendTweet();
 
 		await sleep(25);
 		updateTime();
-		msg = LONG_BREAK + "\n{" + time +"}";
+		msg = output.getLongBreakMsg() + "\n{" + time +"}";
 		sendTweet();
 
 		await sleep(30);
 		updateTime();
-		msg = BACK_TO_WORK + "\n{" + time +"}";
+		msg = output.getWorkMsg() + "\n{" + time +"}";
 		sendTweet();
 	}
 }
