@@ -21,7 +21,7 @@ function getWorkMsg(){
 	options = require('./OutputOptions.json');
 	var len = Object.keys(options).length;
 	var random = Math.floor(Math.random()*len);
-	return options.backToWork[random] + " " + getDifferenciator(duplicate);
+	return options.backToWork[random] + " " + getDifferenciator();
 }
 
 //Returns string from shortBreak json obj
@@ -29,7 +29,7 @@ function getShortBreakMsg(){
 	options = require('./OutputOptions.json');
 	var len = Object.keys(options).length;
 	var random = Math.floor(Math.random()*len);
-	return options.shortBreak[random] + " " + getDifferenciator(duplicate);
+	return options.shortBreak[random] + " " + getDifferenciator();
 }
 
 //Returns string from longBreak json obj
@@ -37,7 +37,7 @@ function getLongBreakMsg(){
 	options = require('./OutputOptions.json');
 	var len = Object.keys(options).length;
 	var random = Math.floor(Math.random()*len);
-	return options.longBreak[random] + " " + getDifferenciator(duplicate);
+	return options.longBreak[random] + " " + getDifferenciator();
 }
 
 //Make needed functions available

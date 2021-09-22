@@ -8,9 +8,9 @@ const Twit = require('twit');
 const output = require("./output-gen-1.1.js");
 
 //Session Time Lengths (minutes)
-const WORK_TIME = 1;
-const LONG_BREAK_TIME = 1;
-const SHORT_BREAK_TIME = 1;
+const WORK_TIME = 25;
+const LONG_BREAK_TIME = 30;
+const SHORT_BREAK_TIME = 5;
 
 //Create new twit using env variables
 var T = new Twit({
@@ -36,6 +36,7 @@ function sleep(minutes) {
 //Handles running of program:
 //Updates the tweet contents, sends tweets, and waits appropriate times between actions
 async function beginSchedule(){
+	console.log("starting");
 	//First 'Get to work' tweet
 	msg = output.getWorkMsg();
 	sendTweet();
