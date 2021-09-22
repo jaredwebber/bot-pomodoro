@@ -7,7 +7,9 @@ const fs = require('fs');
 var options;
 
 //Emoji Constants
-const EMOJIS = ["😀", "😊", "🙂", "😄", "😅", "😃", "😄", "😁", "👍", "💪"];
+const EMOJIS = ["😀", "😊", "🙂", "😄", "😅", "😃", "😄", "😁", "👍", "💪", 
+				"⏰", "⏱️", "⌛", "⏳", "🕑", "🕘", "🕦", "🕗", 
+				"🔊", "🔉", "🔔", "▶️", "🔆", "🔅", "✅", "☑️", "✔️"];
 
 //Returns random emoji from constant array EMOJIS
 function getDifferenciator(){
