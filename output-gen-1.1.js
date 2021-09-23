@@ -1,17 +1,18 @@
 'use strict'
 
 const fs = require('fs');
-//const emoji = require('node-emoji');
-
+var date, time;
 //File Name Holding Output Strings
 var options;
 
 //Returns random emoji from constant array EMOJIS
 function getDifferenciator(){
+	date = new Date();
+	time = "\n["+date.getHours()+":"+date.getMinutes()+" ~ "+date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear()+"]"
 	options = require('./OutputOptions.json');
 	var len = Object.keys(options.emojis).length;
 	var random = Math.floor(Math.random()*len);
-	return options.emojis[random];
+	return options.emojis[random] + time;
 }
 
 //Returns string from backToWork json obj
