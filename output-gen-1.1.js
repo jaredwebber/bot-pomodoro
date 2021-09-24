@@ -8,7 +8,7 @@ var options;
 //Returns random emoji from constant array EMOJIS
 function getDifferenciator(){
 	date = new Date();
-	time = "\n["+date.getHours()+":"+date.getMinutes()+" ~ "+date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear()+"]"
+	time = "\n["+("0"+date.getHours()).slice(-2)+":"+("0"+date.getMinutes()).slice(-2)+" ~ "+date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear()+"]"
 	options = require('./OutputOptions.json');
 	var len = Object.keys(options.emojis).length;
 	var random = Math.floor(Math.random()*len);
