@@ -5,10 +5,10 @@ var date, time;
 //File Name Holding Output Strings
 var options;
 
-//Returns random emoji from constant array EMOJIS
+//Returns random emoji from constant array EMOJIS & appends current date+time
 function getDifferenciator(){
 	date = new Date();
-	time = "\n["+("0"+date.getHours()).slice(-2)+":"+("0"+date.getMinutes()).slice(-2)+" ~ "+date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear()+"]"
+	time = "\n["+("0"+date.getHours()).slice(-2)+":"+("0"+date.getMinutes()).slice(-2)+" ~ "+("0"+date.getDay()).slice(-2)+"/"+("0"+date.getMonth()).slice(-2)+"/"+date.getFullYear()+"]"
 	options = require('./OutputOptions.json');
 	var len = Object.keys(options.emojis).length;
 	var random = Math.floor(Math.random()*len);
