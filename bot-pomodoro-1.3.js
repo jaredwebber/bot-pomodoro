@@ -10,7 +10,7 @@ const DBFile = "./Database.json"
 
 //Access tweetable phrases from output-gen file
 const output = require("./output-gen-1.1.js");
-const { send, exit } = require('process');
+//const { send, exit } = require('process');
 
 //Session Time Lengths (minutes)
 const WORK_TIME = 25;
@@ -63,30 +63,29 @@ async function trigger(){
 	db = require("./Database.json");
 
 	var currStage = db.currentStage.stage;
-	var currRemaining = db.currentStage.minRemaining
+	var currRemaining = db.currentStage.minRemaining;
 	var minRemain = currRemaining - BOT_TICK_TIME;
-	//need to check db.json for current stage, and if action(s) required, schedule them
-	//then call update to set next json stage info
 
 	if(currStage == -1){//init value - first program call
 		msg = output.getWorkMsg();
 		sendTweet();
-		currStage = 0;
+		currStage = 0;//Begin Work Session 1
 		minRemain = WORK_TIME;
-	} else if(currRemaining < BOT_TICK_TIME){
-		console.log("Yes")
+
+	} else if(currRemaining < BOT_TICK_TIME){//Program has been initialized And time remaining is less than cycle time
 		//switch statement for stages
 		switch(currStage){
+			//Work Sessions 1-3
 			case WORK_ONE:
 			case WORK_TWO:
 			case WORK_THREE: 
-				if(currRemaining = 0){//Stage Finished
+				if(currRemaining == 0){//Stage Finished
 					//Tweet Short Break Stage
 					msg = output.getShortBreakMsg();
 					sendTweet();
 					
 					//Sleep 5 mins
-					sleep(SHORT_BREAK_TIME);
+					await sleep(SHORT_BREAK_TIME);
 
 					//Tweet Back To Work
 					msg = output.getWorkMsg();
@@ -98,7 +97,7 @@ async function trigger(){
 
 				}else{//5 mins remaining
 					//sleep 5 minutes
-					sleep(TICK);
+					await sleep(TICK);
 
 					//Tweet Short Break
 					msg = output.getShortBreakMsg();
@@ -108,15 +107,18 @@ async function trigger(){
 					currStage++;
 					minRemain = 0;
 				}
-			break;
+				break;
 
+			//Any Short Break
 			case SB_ONE:
 			case SB_TWO:
 			case SB_THREE: 
-				if(currRemaining = 0){//Stage Finished
+			console.log(currRemaining);
+				if(currRemaining == 0){//Stage Finished
 					//Tweet Back To Work
 					msg = output.getWorkMsg();
 					sendTweet();
+					console.log("here");
 					
 					//Double Increment JSON
 					currStage++;
@@ -124,7 +126,7 @@ async function trigger(){
 
 				}else{//5 mins remaining
 					//sleep 5 minutes
-					sleep(TICK);
+					await sleep(TICK);
 
 					//Tweet Back To Work
 					msg = output.getWorkMsg();
@@ -134,10 +136,10 @@ async function trigger(){
 					currStage++;
 					minRemain = WORK_TIME - 5;
 				}
-			break;
+				break;
 
-			case WORK_FOUR: 
-				if(currRemaining = 0){//Stage Finished
+			case WORK_FOUR: //Work Session #4
+				if(currRemaining == 0){//Stage Finished
 					//Tweet Short Break Stage
 					msg = output.getLongBreakMsg();
 					sendTweet();
@@ -148,7 +150,7 @@ async function trigger(){
 
 				}else{//5 mins remaining
 					//sleep 5 minutes
-					sleep(TICK);
+					await sleep(TICK);
 
 					//Tweet Short Break Stage
 					msg = output.getLongBreakMsg();
@@ -159,10 +161,10 @@ async function trigger(){
 					minRemain = LONG_BREAK_TIME - TICK;
 				}
 
-			break;
+				break;
 
-			case LB: 
-				if(currRemaining = 0){//Stage Finished
+			case LB: //Long Break
+				if(currRemaining == 0){//Stage Finished
 					//Tweet Back To Work
 					msg = output.getWorkMsg();
 					sendTweet();
@@ -173,7 +175,7 @@ async function trigger(){
 
 				}else{//5 mins remaining
 					//sleep 5 minutes
-					sleep(TICK);
+					await sleep(TICK);
 
 					//Tweet Back To Work
 					msg = output.getWorkMsg();
@@ -183,8 +185,7 @@ async function trigger(){
 					currStage = WORK_ONE;
 					minRemain = WORK_TIME - TICK;
 				}
-			break;
-			
+				break;
 		}
 	}
 
@@ -200,7 +201,7 @@ function updateDB(stage, minRemain){
 	fs.writeFileSync(DBFile, JSON.stringify(file));
 }
 
-//Local Host Function
+//Local Host Function - Or Steady/Reliable Cloud Host
 //Updates the tweet contents, sends tweets, and waits appropriate times between actions
 async function beginSchedule(){
 	//First 'Get to work' tweet
@@ -234,8 +235,8 @@ async function beginSchedule(){
 
 //Run Program
 if(process.argv[COMMAND_LINE_ARG_INDEX] == LOCAL_HOST){
-	beginSchedule();
+	beginSchedule();//infinite loop version
 }else{
-	trigger();
+	trigger();//relies on a program call every 10 minutes
 }
 
