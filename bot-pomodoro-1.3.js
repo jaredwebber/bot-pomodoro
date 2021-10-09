@@ -35,7 +35,6 @@ const SB_THREE = 5;
 const WORK_FOUR = 6;
 const LB = 7;
 
-
 //Create new twit using env variables
 var T = new Twit({
 	consumer_key: process.env.API_KEY, 
@@ -67,6 +66,9 @@ async function trigger(){
 	var minRemain = currRemaining - BOT_TICK_TIME;
 
 	if(currStage == -1){//init value - first program call
+
+		//Initialize Heroku Postgres DB??
+
 		msg = output.getWorkMsg();
 		sendTweet();
 		currStage = 0;//Begin Work Session 1
