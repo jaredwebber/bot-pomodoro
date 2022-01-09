@@ -9,7 +9,7 @@ const fs = require('fs');
 const DBFile = "./Database.json"
 
 //Access tweetable phrases from output-gen file
-const output = require("./output-gen-1.1.js");
+const output = require("./output-gen.js");
 //const { send, exit } = require('process');
 
 //Session Time Lengths (minutes)
