@@ -1,6 +1,9 @@
 #vscode metadata
 .DS_Store
 
+# logs
+todo.md
+
 # Logs
 logs
 *.log
