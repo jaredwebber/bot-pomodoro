@@ -6,39 +6,39 @@ var date, time;
 var options;
 
 //Returns random emoji from constant array EMOJIS & appends current date+time
-function getDifferenciator(){
+function getDifferenciator() {
 	date = new Date();
-	time = "\n["+("0"+date.getHours()).slice(-2)+":"+("0"+date.getMinutes()).slice(-2)+" (UTC) ~ "+("0"+date.getDate()).slice(-2)+"/"+("0"+date.getMonth()+1).slice(-2)+"/"+date.getFullYear()+"]";
+	time = "\n[" + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2) + " (UTC) ~ " + ("0" + date.getDate()).slice(-2) + "/" + ("0" + date.getMonth() + 1).slice(-2) + "/" + date.getFullYear() + "]";
 	options = require('./OutputOptions.json');
 	var len = Object.keys(options.emojis).length;
-	var random = Math.floor(Math.random()*len);
+	var random = Math.floor(Math.random() * len);
 	return options.emojis[random] + time;
 }
 
 //Returns string from backToWork json obj
-function getWorkMsg(){
+function getWorkMsg() {
 	options = require('./OutputOptions.json');
 	var len = Object.keys(options.backToWork).length;
-	var random = Math.floor(Math.random()*len);
+	var random = Math.floor(Math.random() * len);
 	return options.backToWork[random] + " " + getDifferenciator();
 }
 
 //Returns string from shortBreak json obj
-function getShortBreakMsg(){
+function getShortBreakMsg() {
 	options = require('./OutputOptions.json');
 	var len = Object.keys(options.shortBreak).length;
-	var random = Math.floor(Math.random()*len);
+	var random = Math.floor(Math.random() * len);
 	return options.shortBreak[random] + " " + getDifferenciator();
 }
 
 //Returns string from longBreak json obj
-function getLongBreakMsg(){
+function getLongBreakMsg() {
 	options = require('./OutputOptions.json');
 	var len = Object.keys(options.longBreak).length;
-	var random = Math.floor(Math.random()*len);
+	var random = Math.floor(Math.random() * len);
 	return options.longBreak[random] + " " + getDifferenciator();
 }
 
 //Make needed functions available
-module.exports = {getLongBreakMsg, getShortBreakMsg, getWorkMsg};
- 
+module.exports = { getLongBreakMsg, getShortBreakMsg, getWorkMsg };
+

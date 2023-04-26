@@ -37,9 +37,9 @@ const LB = 7;
 
 //Create new twit using env variables
 var T = new Twit({
-	consumer_key: process.env.API_KEY, 
-	consumer_secret: process.env.SECRET_KEY, 
-	access_token: process.env.ACCESS_TOKEN, 
+	consumer_key: process.env.API_KEY,
+	consumer_secret: process.env.SECRET_KEY,
+	access_token: process.env.ACCESS_TOKEN,
 	access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
 
@@ -47,32 +47,36 @@ var msg; //Message to be tweeted
 var db; //Database.json stored
 
 //Send tweet to account, using message var contents
-function sendTweet(){
-	T.post('statuses/update', { status:msg})
-}  
+function sendTweet() {
+	try {
+		T.post('statuses/update', { status: msg }).then(resp => console.log(resp.data.text))
+	} catch (e) {
+		console.log(e)
+	}
+}
 
 //Sleep function, minutes of sleep taken as parameter
 function sleep(minutes) {
-	var ms = minutes*60*1000;//minutes * 60 sec/min * 1000 ms/sec
+	var ms = minutes * 60 * 1000;//minutes * 60 sec/min * 1000 ms/sec
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 //Local Host Function - Or Steady/Reliable Cloud Host
 //Updates the tweet contents, sends tweets, and waits appropriate times between actions
-async function beginSchedule(){
+async function beginSchedule() {
 	//First 'Get to work' tweet
 	msg = output.getWorkMsg();
 	sendTweet();
 
 	//Enter infinite loop
-	while(true){
+	while (true) {
 
 		//loop 3 times break -> work
-		for(var i = 0; i< 3; i++){
+		for (var i = 0; i < 3; i++) {
 			await sleep(WORK_TIME);
 			msg = output.getShortBreakMsg();
 			sendTweet();
-			
+
 			await sleep(SHORT_BREAK_TIME);
 			msg = output.getWorkMsg();
 			sendTweet();
