@@ -1,0 +1,13 @@
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>dev.jaredwebber.botpomodoro</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/bin/sh</string>
+      <string>/Users/jaredwebber/Github/bot-pomodoro/pomodoro-startup.sh</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+  </dict>
+</plist>
